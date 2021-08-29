@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using Play.Common.Settings;
+using Play.Identity.Service.Entities;
 
 namespace Play.Identity
 {
@@ -25,6 +30,21 @@ namespace Play.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+
+            var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<ApplicationRole>()
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
+
+                mongoDbSettings.ConnectionString,
+                serviceSettings.ServiceName
+
+
+
+                );
 
             services.AddControllers();
         }
@@ -39,6 +59,8 @@ namespace Play.Identity
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -46,6 +68,8 @@ namespace Play.Identity
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapRazorPages();
             });
         }
     }

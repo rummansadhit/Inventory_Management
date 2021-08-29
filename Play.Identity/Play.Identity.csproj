@@ -12,6 +12,8 @@
     <None Remove="Play.Common" />
     <None Remove="Play.Catalog.Contracts" />
     <None Remove="Entities\" />
+    <None Remove="Controllers\" />
+    <None Remove="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AspNetCore.Identity.MongoDbCore" Version="3.1.1" />
@@ -24,8 +26,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Play.Common" Version="1.0.3" />
     <PackageReference Include="Play.Catalog.Contracts" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

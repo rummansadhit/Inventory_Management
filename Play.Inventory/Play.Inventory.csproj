@@ -17,6 +17,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Consumers\" />
+    <None Remove="IdentityServer4" />
+    <None Remove="IdentityServer4.AspNetIdentity" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Play.Catalog.Contracts\Play.Catalog.Contracts.csproj">

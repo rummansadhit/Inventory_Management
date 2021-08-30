@@ -100,9 +100,12 @@ namespace Play.Identity
 
             app.UseRouting();
 
+            app.UseIdentityServer();
+
+
             app.UseAuthorization();
 
-            app.UseIdentityServer();
+            
 
             app.UseEndpoints(endpoints =>
             {

@@ -16,6 +16,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using Play.Common.Settings;
 using Play.Identity.Service.Entities;
+using Play.Identity.Service.Settings;
 
 namespace Play.Identity
 {
@@ -62,6 +63,14 @@ namespace Play.Identity
 
             });
 
+            IdentityServerSettings identityServerSettings = new IdentityServerSettings();
+
+
+
+            services.AddIdentityServer()
+            .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
+            .AddInMemoryClients(identityServerSettings.Clients);
+
 
         }
 
@@ -92,6 +101,8 @@ namespace Play.Identity
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {

@@ -12,7 +12,8 @@
     <None Remove="Play.Common" />
     <None Remove="Play.Catalog.Contracts" />
     <None Remove="Entities\" />
-    <None Remove="Controllers\" />
+    <None Remove="IdentityServer4" />
+    <None Remove="IdentityServer4.AspNetIdentity" />
     <None Remove="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
@@ -26,10 +27,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Play.Common" Version="1.0.3" />
     <PackageReference Include="Play.Catalog.Contracts" Version="1.0.0" />
+    <PackageReference Include="IdentityServer4" Version="4.1.2" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

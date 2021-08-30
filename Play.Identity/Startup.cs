@@ -37,6 +37,8 @@ namespace Play.Identity
             var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
             var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
+            IdentityServerSettings identityServerSettings = new IdentityServerSettings();
+
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<ApplicationRole>()
                 .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
@@ -63,14 +65,16 @@ namespace Play.Identity
 
             });
 
-            IdentityServerSettings identityServerSettings = new IdentityServerSettings();
+            
 
 
 
             services.AddIdentityServer()
+            .AddAspNetIdentity<ApplicationUser>()
             .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
-            .AddInMemoryClients(identityServerSettings.Clients);
-
+            .AddInMemoryClients(identityServerSettings.Clients)
+            .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
+            .AddDeveloperSigningCredential();
 
         }
 

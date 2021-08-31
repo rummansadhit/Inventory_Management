@@ -17,6 +17,7 @@ using MongoDB.Bson.Serialization.Serializers;
 using Play.Common.Settings;
 using Play.Identity.Service.Entities;
 using Play.Identity.Service.Settings;
+using static IdentityModel.ClaimComparer;
 
 namespace Play.Identity
 {
@@ -36,8 +37,7 @@ namespace Play.Identity
 
             var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
             var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-
-            IdentityServerSettings identityServerSettings = new IdentityServerSettings();
+            var identityServerSettings = Configuration.GetSection(nameof(IdentityServerSettings)).Get<IdentityServerSettings>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<ApplicationRole>()
@@ -65,7 +65,7 @@ namespace Play.Identity
 
             });
 
-            
+
 
 
 

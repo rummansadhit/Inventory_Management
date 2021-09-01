@@ -73,6 +73,7 @@ namespace Play.Identity
             .AddAspNetIdentity<ApplicationUser>()
             .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
             .AddInMemoryClients(identityServerSettings.Clients)
+            .AddInMemoryApiResources(identityServerSettings.ApiResources)
             .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
             .AddDeveloperSigningCredential();
 

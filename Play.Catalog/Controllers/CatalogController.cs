@@ -14,6 +14,7 @@ namespace Play.Catalog.Controllers
 {
     [ApiController]
     [Route("items")]
+    [Authorize]
     public class CatalogController:ControllerBase
     {
 
